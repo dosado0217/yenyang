@@ -1,0 +1,4366 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Yenyang | Explore Cebu. Ride in Comfort.
+{% endblock %}
+
+
+{% block extra_css %}
+
+<style>
+
+/* =========================================
+   HERO SECTION
+========================================= */
+
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    padding: 145px 0 75px;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 10% 20%,
+            rgba(0, 191, 166, 0.10),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(0, 140, 203, 0.10),
+            transparent 35%
+        ),
+        var(--bg-primary);
+}
+
+/* Decorative glow */
+
+.hero-glow {
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.18;
+    pointer-events: none;
+}
+
+.hero-glow-one {
+    top: 5%;
+    left: -180px;
+    background: var(--primary);
+}
+
+.hero-glow-two {
+    right: -180px;
+    bottom: 0;
+    background: var(--secondary);
+}
+
+/* =========================================
+   HERO LEFT CONTENT
+========================================= */
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+}
+
+.hero-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 9px 16px;
+    margin-bottom: 25px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 50px;
+
+    background: var(--bg-card);
+    backdrop-filter: blur(15px);
+
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+}
+
+.hero-label i {
+    font-size: 1rem;
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.8rem, 5.2vw, 5.1rem);
+    font-weight: 800;
+    line-height: 1.06;
+    letter-spacing: -2.5px;
+
+    color: var(--text-primary);
+    margin-bottom: 24px;
+}
+
+.hero-title .highlight {
+    display: inline-block;
+
+    background: linear-gradient(
+        110deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-description {
+    max-width: 560px;
+    font-size: 1.05rem;
+    line-height: 1.8;
+
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+}
+
+/* =========================================
+   HERO CTA BUTTONS
+========================================= */
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 32px;
+}
+
+/* =========================================
+   TRUST HIGHLIGHTS
+========================================= */
+
+.hero-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.hero-highlight-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.hero-highlight-item i {
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+/* =========================================
+   QUICK INQUIRY CARD
+========================================= */
+
+.hero-inquiry {
+    position: relative;
+    z-index: 3;
+
+    margin-top: 34px;
+    padding: 23px;
+
+    border-radius: 22px;
+
+    background: var(--bg-card);
+    backdrop-filter: blur(22px);
+    -webkit-backdrop-filter: blur(22px);
+
+    border: 1px solid var(--border-color);
+
+    box-shadow: var(--shadow);
+}
+
+.inquiry-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.inquiry-icon {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    background: rgba(0, 191, 166, 0.12);
+    color: var(--primary);
+
+    border-radius: 13px;
+    font-size: 1.25rem;
+}
+
+.inquiry-heading h5 {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.inquiry-heading p {
+    font-size: 0.78rem;
+    margin: 3px 0 0;
+}
+
+.inquiry-field {
+    margin-bottom: 14px;
+}
+
+.inquiry-field label {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-bottom: 7px;
+}
+
+.inquiry-field .form-control,
+.inquiry-field .form-select {
+    min-height: 46px;
+    border-radius: 11px;
+
+    background: var(--bg-primary);
+    color: var(--text-primary);
+
+    border: 1px solid var(--border-color);
+
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+
+    box-shadow: none;
+}
+
+.inquiry-field .form-control:focus,
+.inquiry-field .form-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--cyan-glow);
+}
+
+.inquiry-field .form-select option {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.inquiry-submit {
+    width: 100%;
+    min-height: 49px;
+    border: none;
+    border-radius: 12px;
+
+    background: linear-gradient(
+        110deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    color: white;
+    font-weight: 800;
+
+    transition: var(--transition);
+}
+
+.inquiry-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px var(--cyan-glow);
+}
+
+/* =========================================
+   HERO RIGHT VISUAL
+========================================= */
+
+.hero-visual-column {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-visual-wrapper {
+    position: relative;
+
+    width: 100%;
+    min-height: 570px;
+
+    padding: 12px;
+    border-radius: 35px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(0, 191, 166, 0.30),
+        rgba(0, 140, 203, 0.10)
+    );
+
+    box-shadow: 0 25px 75px rgba(0, 140, 203, 0.16);
+}
+
+/* Main Vehicle Image */
+
+.hero-vehicle-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 546px;
+
+    border-radius: 26px;
+    overflow: hidden;
+
+    background-color: #0B3446;
+
+    /* background-image:
+        linear-gradient(
+            180deg,
+            rgba(5, 28, 40, 0.03) 40%,
+            rgba(5, 28, 40, 0.60) 100%
+        ),
+        url("../img/hero-vehicle.jpg"); */
+
+        background-image:
+        linear-gradient(
+            180deg,
+            rgba(5, 28, 40, 0.03) 40%,
+            rgba(5, 28, 40, 0.60) 100%
+        ),
+        url("{% static 'img/hero-vehicle.jpg' %}");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Image text overlay */
+
+.hero-image-caption {
+    position: absolute;
+    left: 28px;
+    right: 28px;
+    bottom: 27px;
+    z-index: 2;
+}
+
+.hero-image-caption span {
+    display: inline-block;
+
+    padding: 7px 13px;
+    border-radius: 30px;
+
+    background: rgba(0, 191, 166, 0.90);
+
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 0.72rem;
+    letter-spacing: 1px;
+}
+
+.hero-image-caption h3 {
+    color: #ffffff;
+    font-size: 2rem;
+    margin: 12px 0 5px;
+}
+
+.hero-image-caption p {
+    color: rgba(255,255,255,0.85);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* =========================================
+   FLOATING VISUAL BADGES
+========================================= */
+
+.hero-floating-card {
+    position: absolute;
+    z-index: 5;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 14px 18px;
+
+    border-radius: 17px;
+
+    background: rgba(255, 255, 255, 0.86);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255,255,255,0.70);
+
+    box-shadow: 0 12px 35px rgba(0,0,0,0.13);
+
+    animation: floatAnimation 4s ease-in-out infinite;
+}
+
+.hero-floating-card.top {
+    top: 65px;
+    left: -35px;
+}
+
+.hero-floating-card.bottom {
+    bottom: 115px;
+    right: -35px;
+
+    animation-delay: 1s;
+}
+
+.hero-floating-icon {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 191, 166, 0.12);
+
+    color: #009E8A;
+    border-radius: 13px;
+    font-size: 1.35rem;
+}
+
+.hero-floating-card strong {
+    display: block;
+    color: #102A43;
+    font-size: 0.87rem;
+}
+
+.hero-floating-card small {
+    color: #607789;
+    font-size: 0.74rem;
+}
+
+@keyframes floatAnimation {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* =========================================
+   RESPONSIVE HERO
+========================================= */
+
+@media (max-width: 1199px) {
+
+    .hero-visual-wrapper {
+        min-height: 500px;
+    }
+
+    .hero-vehicle-image {
+        min-height: 476px;
+    }
+
+    .hero-floating-card.top {
+        left: -10px;
+    }
+
+    .hero-floating-card.bottom {
+        right: -10px;
+    }
+}
+
+@media (max-width: 991px) {
+
+    .hero-section {
+        padding-top: 125px;
+    }
+
+    .hero-content {
+        max-width: 100%;
+    }
+
+    .hero-visual-column {
+        margin-top: 55px;
+    }
+
+    .hero-visual-wrapper {
+        min-height: 530px;
+    }
+
+    .hero-vehicle-image {
+        min-height: 506px;
+    }
+
+}
+
+@media (max-width: 576px) {
+
+    .hero-section {
+        padding: 115px 0 55px;
+    }
+
+    .hero-title {
+        font-size: 2.8rem;
+        letter-spacing: -1.5px;
+    }
+
+    .hero-description {
+        font-size: 0.94rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .hero-buttons a {
+        width: 100%;
+    }
+
+    .hero-highlights {
+        gap: 12px;
+        flex-direction: column;
+    }
+
+    .hero-inquiry {
+        padding: 17px;
+    }
+
+    .hero-visual-wrapper {
+        min-height: 410px;
+        padding: 8px;
+        border-radius: 25px;
+    }
+
+    .hero-vehicle-image {
+        min-height: 394px;
+        border-radius: 19px;
+        background-position: center;
+    }
+
+    .hero-floating-card {
+        padding: 10px 12px;
+    }
+
+    .hero-floating-card.top {
+        top: 25px;
+        left: 0;
+    }
+
+    .hero-floating-card.bottom {
+        right: 0;
+        bottom: 95px;
+    }
+
+    .hero-image-caption h3 {
+        font-size: 1.5rem;
+    }
+
+}
+
+
+/* =========================================
+   VEHICLE FLEET SHOWCASE
+========================================= */
+
+.fleet-section {
+    position: relative;
+    padding: 100px 0;
+    overflow: hidden;
+    background: var(--bg-secondary);
+}
+
+.fleet-section::before {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: 5%;
+    right: -200px;
+    border-radius: 50%;
+    background: rgba(0, 191, 166, 0.08);
+    filter: blur(100px);
+    pointer-events: none;
+}
+
+.fleet-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Section Heading */
+
+.section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+
+.section-title span {
+    color: var(--primary);
+}
+
+.section-description {
+    max-width: 650px;
+    margin: 0 auto;
+    font-size: 0.96rem;
+}
+
+/* Category Filter */
+
+.fleet-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin: 45px 0 30px;
+}
+
+.fleet-filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.fleet-filter-btn {
+    border: 1px solid var(--border-color);
+    padding: 11px 19px;
+    border-radius: 13px;
+
+    background: var(--bg-card);
+    color: var(--text-secondary);
+
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 700;
+
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.fleet-filter-btn:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.fleet-filter-btn.active {
+    border-color: transparent;
+    background: linear-gradient(
+        110deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    color: #ffffff;
+    box-shadow: 0 5px 18px var(--cyan-glow);
+}
+
+.fleet-result-count {
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+/* Vehicle Card */
+
+.vehicle-grid-item {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.vehicle-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    background: var(--bg-card);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 1px solid var(--border-color);
+    border-radius: 23px;
+    overflow: hidden;
+
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.vehicle-card:hover {
+    transform: translateY(-9px);
+    border-color: rgba(0, 191, 166, 0.45);
+    box-shadow: 0 18px 40px rgba(0, 140, 203, 0.13);
+}
+
+/* Vehicle Image */
+
+.vehicle-image-wrapper {
+    position: relative;
+    height: 225px;
+    overflow: hidden;
+
+    background: linear-gradient(
+        135deg,
+        #D7F4F3,
+        #B9E9F2
+    );
+}
+
+.vehicle-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+
+    transition: transform 0.6s ease;
+}
+
+.vehicle-card:hover .vehicle-image {
+    transform: scale(1.07);
+}
+
+/* Image Labels */
+
+.vehicle-featured-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+
+    padding: 7px 12px;
+    border-radius: 30px;
+
+    color: #ffffff;
+    background: linear-gradient(
+        110deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    font-size: 0.70rem;
+    font-weight: 800;
+}
+
+.vehicle-category-badge {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+
+    padding: 7px 12px;
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.90);
+    color: #102A43;
+
+    font-size: 0.72rem;
+    font-weight: 800;
+
+    backdrop-filter: blur(10px);
+}
+
+/* Vehicle Information */
+
+.vehicle-card-body {
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.vehicle-type {
+    color: var(--primary);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 7px;
+}
+
+.vehicle-name {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 800;
+    margin-bottom: 9px;
+}
+
+.vehicle-description {
+    font-size: 0.84rem;
+    line-height: 1.65;
+    margin-bottom: 19px;
+}
+
+/* Vehicle Specifications */
+
+.vehicle-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+
+    padding: 16px 0;
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+
+    margin-bottom: 17px;
+}
+
+.vehicle-spec {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+}
+
+.vehicle-spec i {
+    color: var(--primary);
+    font-size: 1.1rem;
+    margin-top: 2px;
+}
+
+.vehicle-spec strong {
+    display: block;
+    color: var(--text-primary);
+    font-size: 0.76rem;
+}
+
+.vehicle-spec small {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.69rem;
+    margin-top: 3px;
+}
+
+/* Vehicle Feature Badges */
+
+.vehicle-feature-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 20px;
+}
+
+.vehicle-feature-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 7px 10px;
+    border-radius: 8px;
+
+    background: rgba(0, 191, 166, 0.09);
+    color: var(--primary);
+
+    font-size: 0.70rem;
+    font-weight: 700;
+}
+
+/* Rate */
+
+.vehicle-rate-area {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 8px;
+
+    margin-top: auto;
+    padding-top: 15px;
+
+    border-top: 1px solid var(--border-color);
+}
+
+.vehicle-rate-label {
+    color: var(--text-secondary);
+    font-size: 0.72rem;
+}
+
+.vehicle-rate {
+    color: var(--primary);
+    font-family: var(--font-heading);
+    font-size: 1.55rem;
+    font-weight: 800;
+}
+
+.vehicle-rate-unit {
+    color: var(--text-secondary);
+    font-size: 0.73rem;
+}
+
+.vehicle-rate-note {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.65rem;
+    margin-top: 2px;
+}
+
+/* Inquiry Button */
+
+.vehicle-inquire-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    width: 100%;
+    min-height: 47px;
+    margin-top: 18px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: linear-gradient(
+        110deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    color: #ffffff;
+    font-size: 0.87rem;
+    font-weight: 800;
+
+    transition: var(--transition);
+}
+
+.vehicle-inquire-btn:hover {
+    color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px var(--cyan-glow);
+}
+
+/* Disclaimer */
+
+.fleet-disclaimer {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.76rem;
+    margin-top: 30px;
+}
+
+/* Fleet Responsive */
+
+@media (max-width: 767px) {
+    .fleet-section {
+        padding: 75px 0;
+    }
+
+    .fleet-toolbar {
+        justify-content: center;
+    }
+
+    .fleet-filter-buttons {
+        justify-content: center;
+    }
+
+    .fleet-result-count {
+        text-align: center;
+        width: 100%;
+    }
+
+    .vehicle-image-wrapper {
+        height: 215px;
+    }
+}
+
+@media (max-width: 400px) {
+    .fleet-filter-btn {
+        padding: 9px 12px;
+        font-size: 0.76rem;
+    }
+
+    .vehicle-card-body {
+        padding: 17px;
+    }
+}
+
+
+
+/* =========================================
+   CEBU DESTINATIONS SHOWCASE
+========================================= */
+
+.destinations-section {
+    position: relative;
+    padding: 105px 0;
+    overflow: hidden;
+    background: var(--bg-primary);
+}
+
+.destinations-section::before {
+    content: "";
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    left: -220px;
+    top: 20%;
+    background: rgba(0, 191, 166, 0.08);
+    filter: blur(110px);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.destinations-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Section Heading */
+
+.destinations-heading {
+    max-width: 730px;
+    margin: 0 auto 45px;
+    text-align: center;
+}
+
+.destinations-heading .section-eyebrow {
+    margin-bottom: 14px;
+}
+
+.destinations-heading .section-description {
+    margin: 0 auto;
+}
+
+/* Destination Grid */
+
+.destination-grid {
+    row-gap: 25px;
+}
+
+/* Destination Card */
+
+.destination-card {
+    position: relative;
+    height: 390px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 25px;
+    isolation: isolate;
+
+    background: #123A4D;
+
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+
+    transition: var(--transition);
+}
+
+.destination-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 22px 45px rgba(0, 140, 203, 0.20);
+}
+
+/* Background Image */
+
+.destination-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    z-index: -2;
+
+    transition: transform 0.8s ease;
+}
+
+.destination-card:hover .destination-image {
+    transform: scale(1.09);
+}
+
+/* Dark Gradient Overlay */
+
+.destination-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background: linear-gradient(
+        180deg,
+        rgba(5, 24, 37, 0.10) 0%,
+        rgba(5, 24, 37, 0.15) 35%,
+        rgba(5, 24, 37, 0.90) 100%
+    );
+}
+
+/* Top Badges */
+
+.destination-top {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.destination-number {
+    padding: 8px 13px;
+    border-radius: 30px;
+
+    background: rgba(255, 255, 255, 0.20);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 800;
+
+    backdrop-filter: blur(12px);
+}
+
+.destination-icon {
+    width: 43px;
+    height: 43px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    color: #ffffff;
+    background: rgba(0, 191, 166, 0.90);
+
+    font-size: 1.2rem;
+}
+
+/* Bottom Content */
+
+.destination-content {
+    position: absolute;
+    left: 25px;
+    right: 25px;
+    bottom: 24px;
+
+    color: #ffffff;
+    transition: var(--transition);
+}
+
+.destination-location {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    color: #7FFFE4;
+    font-size: 0.74rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    margin-bottom: 10px;
+}
+
+.destination-title {
+    color: #ffffff;
+    font-family: var(--font-heading);
+    font-size: 1.65rem;
+    font-weight: 800;
+    line-height: 1.2;
+
+    margin-bottom: 5px;
+}
+
+.destination-tagline {
+    color: #9AF4E8;
+    font-size: 0.83rem;
+    font-weight: 700;
+
+    margin-bottom: 9px;
+}
+
+.destination-description {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.82rem;
+    line-height: 1.6;
+
+    margin-bottom: 15px;
+}
+
+/* Duration & Button */
+
+.destination-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.destination-duration {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.destination-inquire-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    padding: 10px 14px;
+    border-radius: 11px;
+    border: 1px solid rgba(255,255,255,0.5);
+
+    color: #ffffff;
+    background: rgba(0, 191, 166, 0.90);
+
+    font-size: 0.75rem;
+    font-weight: 800;
+
+    transition: var(--transition);
+}
+
+.destination-inquire-btn:hover {
+    color: #ffffff;
+    background: #008CCB;
+    border-color: #008CCB;
+    transform: translateY(-2px);
+}
+
+/* Bottom Call To Action */
+
+.destinations-bottom {
+    margin-top: 45px;
+    padding: 28px 30px;
+
+    border-radius: 22px;
+    border: 1px solid var(--border-color);
+
+    background: var(--bg-card);
+    backdrop-filter: blur(18px);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    box-shadow: var(--shadow);
+}
+
+.destinations-bottom h4 {
+    font-size: 1.25rem;
+    margin-bottom: 5px;
+}
+
+.destinations-bottom p {
+    font-size: 0.85rem;
+    margin-bottom: 0;
+}
+
+/* Responsive */
+
+@media (max-width: 991px) {
+    .destination-card {
+        height: 380px;
+    }
+}
+
+@media (max-width: 576px) {
+
+    .destinations-section {
+        padding: 75px 0;
+    }
+
+    .destination-card {
+        height: 400px;
+        border-radius: 20px;
+    }
+
+    .destination-content {
+        left: 18px;
+        right: 18px;
+        bottom: 19px;
+    }
+
+    .destination-title {
+        font-size: 1.4rem;
+    }
+
+    .destination-description {
+        font-size: 0.78rem;
+    }
+
+    .destinations-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 22px;
+    }
+
+    .destinations-bottom .btn-primary-custom {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================
+   FEATURED TOUR PACKAGES
+========================================= */
+
+.tours-section {
+    position: relative;
+    padding: 105px 0;
+    overflow: hidden;
+    background: var(--bg-secondary);
+}
+
+.tours-section::before {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    right: -200px;
+    top: 10%;
+    border-radius: 50%;
+    background: rgba(0, 140, 203, 0.09);
+    filter: blur(110px);
+    pointer-events: none;
+}
+
+.tours-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Heading */
+
+.tours-heading {
+    max-width: 720px;
+    margin: 0 auto 48px;
+    text-align: center;
+}
+
+.tours-heading .section-description {
+    margin: 0 auto;
+}
+
+/* Package Cards */
+
+.tour-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    border: 1px solid var(--border-color);
+    border-radius: 23px;
+
+    background: var(--bg-card);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.tour-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(0, 191, 166, 0.45);
+    box-shadow: 0 18px 40px rgba(0, 140, 203, 0.14);
+}
+
+/* Package Image */
+
+.tour-image-wrapper {
+    position: relative;
+    height: 225px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #D7F4F3, #B9E9F2);
+}
+
+.tour-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.tour-card:hover .tour-image {
+    transform: scale(1.07);
+}
+
+/* Image Badges */
+
+.tour-featured-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+
+    padding: 8px 13px;
+    border-radius: 30px;
+
+    background: linear-gradient(110deg, #00BFA6, #008CCB);
+    color: #fff;
+
+    font-size: 0.70rem;
+    font-weight: 800;
+}
+
+.tour-duration-badge {
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 8px 12px;
+    border-radius: 10px;
+
+    background: rgba(255, 255, 255, 0.90);
+    color: #102A43;
+
+    font-size: 0.72rem;
+    font-weight: 800;
+
+    backdrop-filter: blur(12px);
+}
+
+/* Package Body */
+
+.tour-card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 23px;
+}
+
+.tour-category {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    color: var(--primary);
+    font-size: 0.73rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+
+    margin-bottom: 9px;
+}
+
+.tour-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 800;
+    line-height: 1.3;
+
+    margin-bottom: 17px;
+}
+
+/* Package Highlights */
+
+.tour-highlights-heading {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+
+    margin-bottom: 12px;
+}
+
+.tour-highlights {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 22px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.tour-highlights li {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+.tour-highlights li i {
+    color: var(--primary);
+    font-size: 0.95rem;
+    margin-top: 2px;
+}
+
+/* Package Price */
+
+.tour-price-area {
+    margin-top: auto;
+    padding-top: 17px;
+
+    border-top: 1px solid var(--border-color);
+}
+
+.tour-price-label {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.73rem;
+    margin-bottom: 3px;
+}
+
+.tour-price {
+    color: var(--primary);
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.tour-price-unit {
+    color: var(--text-secondary);
+    font-size: 0.76rem;
+    font-weight: 600;
+}
+
+.tour-price-note {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.66rem;
+    margin-top: 4px;
+}
+
+/* Package Inquiry Button */
+
+.tour-inquire-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    width: 100%;
+    min-height: 48px;
+    margin-top: 18px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: linear-gradient(110deg, var(--primary), var(--secondary));
+    color: #ffffff;
+
+    font-size: 0.85rem;
+    font-weight: 800;
+
+    transition: var(--transition);
+}
+
+.tour-inquire-btn:hover {
+    color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px var(--cyan-glow);
+}
+
+/* Package Disclaimer */
+
+.tour-disclaimer {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.76rem;
+    line-height: 1.6;
+    margin-top: 30px;
+}
+
+/* Bottom CTA */
+
+.tours-cta {
+    position: relative;
+    margin-top: 48px;
+    padding: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 23px;
+
+    background: var(--bg-card);
+    backdrop-filter: blur(18px);
+
+    box-shadow: var(--shadow);
+}
+
+.tours-cta h3 {
+    font-size: 1.45rem;
+    margin-bottom: 7px;
+}
+
+.tours-cta p {
+    font-size: 0.87rem;
+    margin: 0;
+}
+
+/* Responsive */
+
+@media (max-width: 767px) {
+
+    .tours-section {
+        padding: 75px 0;
+    }
+
+    .tour-image-wrapper {
+        height: 220px;
+    }
+
+    .tours-cta {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px;
+    }
+
+    .tours-cta .btn-primary-custom {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================
+   WHY CHOOSE YENYANG
+========================================= */
+
+.why-section {
+    position: relative;
+    padding: 105px 0;
+    overflow: hidden;
+    background: var(--bg-primary);
+}
+
+.why-section::before {
+    content: "";
+    position: absolute;
+    width: 430px;
+    height: 430px;
+    right: -200px;
+    bottom: 0;
+    border-radius: 50%;
+    background: rgba(0, 191, 166, 0.08);
+    filter: blur(110px);
+    pointer-events: none;
+}
+
+.why-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Section Heading */
+
+.why-heading {
+    max-width: 720px;
+    margin: 0 auto 55px;
+    text-align: center;
+}
+
+.why-heading .section-description {
+    margin: 0 auto;
+}
+
+/* Benefit Cards */
+
+.why-card {
+    position: relative;
+    height: 100%;
+    padding: 30px 25px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 22px;
+
+    background: var(--bg-card);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow: var(--shadow);
+    overflow: hidden;
+
+    transition: var(--transition);
+}
+
+.why-card::before {
+    content: "";
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    top: -45px;
+    right: -45px;
+
+    border-radius: 50%;
+    background: rgba(0, 191, 166, 0.08);
+
+    transition: var(--transition);
+}
+
+.why-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(0, 191, 166, 0.45);
+    box-shadow: 0 18px 40px rgba(0, 140, 203, 0.12);
+}
+
+.why-card:hover::before {
+    transform: scale(1.5);
+}
+
+/* Icon */
+
+.why-icon {
+    position: relative;
+    z-index: 1;
+
+    width: 62px;
+    height: 62px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 23px;
+
+    border-radius: 18px;
+
+    background: linear-gradient(
+        135deg,
+        rgba(0, 191, 166, 0.15),
+        rgba(0, 140, 203, 0.13)
+    );
+
+    color: var(--primary);
+    font-size: 1.7rem;
+
+    transition: var(--transition);
+}
+
+.why-card:hover .why-icon {
+    color: #ffffff;
+    background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    transform: rotate(-5deg) scale(1.06);
+}
+
+/* Card Content */
+
+.why-card h3 {
+    position: relative;
+    z-index: 1;
+
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-weight: 800;
+
+    margin-bottom: 12px;
+}
+
+.why-card p {
+    position: relative;
+    z-index: 1;
+
+    font-size: 0.88rem;
+    line-height: 1.75;
+
+    margin-bottom: 0;
+}
+
+/* Number Accent */
+
+.why-card-number {
+    position: absolute;
+    right: 22px;
+    bottom: 15px;
+
+    color: var(--border-color);
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 800;
+
+    line-height: 1;
+}
+
+/* Trust Banner */
+
+.why-banner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+
+    margin-top: 55px;
+    padding: 35px 38px;
+
+    border-radius: 25px;
+    overflow: hidden;
+
+    background: linear-gradient(
+        115deg,
+        #007F82,
+        #008CCB
+    );
+
+    box-shadow: 0 18px 40px rgba(0, 140, 203, 0.20);
+}
+
+.why-banner::after {
+    content: "";
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    right: 10%;
+    top: -190px;
+
+    border: 1px solid rgba(255,255,255,0.17);
+    border-radius: 50%;
+}
+
+.why-banner-content {
+    position: relative;
+    z-index: 1;
+}
+
+.why-banner h3 {
+    color: #ffffff;
+    font-family: var(--font-heading);
+    font-size: 1.7rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.why-banner p {
+    color: rgba(255,255,255,0.86);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+.why-banner .btn {
+    position: relative;
+    z-index: 1;
+
+    flex-shrink: 0;
+
+    padding: 13px 21px;
+    border: 1px solid rgba(255,255,255,0.7);
+    border-radius: 13px;
+
+    background: #ffffff;
+    color: #007F82;
+
+    font-weight: 800;
+    transition: var(--transition);
+}
+
+.why-banner .btn:hover {
+    background: #E5FFFF;
+    color: #006F73;
+    transform: translateY(-3px);
+}
+
+/* Responsive */
+
+@media (max-width: 767px) {
+
+    .why-section {
+        padding: 75px 0;
+    }
+
+    .why-card {
+        padding: 25px 22px;
+    }
+
+    .why-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 27px 23px;
+    }
+
+    .why-banner h3 {
+        font-size: 1.4rem;
+    }
+
+    .why-banner .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+}
+
+
+/* =========================================
+   CUSTOMER REVIEWS & TESTIMONIALS
+========================================= */
+
+.reviews-section {
+    position: relative;
+    padding: 105px 0;
+    overflow: hidden;
+    background: var(--bg-primary);
+}
+
+.reviews-section::before {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    left: -210px;
+    top: 10%;
+    border-radius: 50%;
+    background: rgba(0, 191, 166, 0.08);
+    filter: blur(110px);
+    pointer-events: none;
+}
+
+.reviews-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Heading */
+
+.reviews-heading {
+    max-width: 720px;
+    margin: 0 auto 48px;
+    text-align: center;
+}
+
+.reviews-heading .section-description {
+    margin: 0 auto;
+}
+
+/* Review Grid */
+
+.reviews-grid {
+    align-items: stretch;
+}
+
+/* Review Card */
+
+.review-card {
+    position: relative;
+    height: 100%;
+    padding: 28px;
+
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid var(--border-color);
+    border-radius: 22px;
+
+    background: var(--bg-card);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow: var(--shadow);
+
+    transition: var(--transition);
+}
+
+.review-card:hover {
+    transform: translateY(-7px);
+    border-color: rgba(0, 191, 166, 0.4);
+    box-shadow: 0 18px 40px rgba(0, 140, 203, 0.12);
+}
+
+/* Review Top */
+
+.review-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.review-quote-icon {
+    color: var(--primary);
+    font-size: 2rem;
+    opacity: 0.8;
+}
+
+.review-service-badge {
+    padding: 7px 11px;
+    border-radius: 30px;
+
+    background: rgba(0, 191, 166, 0.10);
+    color: var(--primary);
+
+    font-size: 0.68rem;
+    font-weight: 800;
+}
+
+/* Star Rating */
+
+.review-stars {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    color: #F5AE35;
+    font-size: 0.95rem;
+
+    margin-bottom: 16px;
+}
+
+.review-rating-number {
+    margin-left: 6px;
+    color: var(--text-secondary);
+    font-size: 0.76rem;
+    font-weight: 700;
+}
+
+/* Review Text */
+
+.review-message {
+    color: var(--text-secondary);
+    font-size: 0.91rem;
+    line-height: 1.85;
+
+    flex-grow: 1;
+    margin-bottom: 25px;
+}
+
+/* Customer Details */
+
+.review-customer {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    padding-top: 19px;
+    border-top: 1px solid var(--border-color);
+}
+
+.review-avatar {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    color: #ffffff;
+    font-family: var(--font-heading);
+    font-size: 0.95rem;
+    font-weight: 800;
+}
+
+.review-customer-info {
+    min-width: 0;
+}
+
+.review-customer-info strong {
+    display: block;
+    color: var(--text-primary);
+    font-size: 0.88rem;
+}
+
+.review-customer-info small {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.73rem;
+    margin-top: 3px;
+}
+
+.review-date {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.68rem;
+    margin-top: 5px;
+}
+
+/* Empty State */
+
+.reviews-empty {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 48px 30px;
+
+    text-align: center;
+
+    border: 1px dashed var(--border-color);
+    border-radius: 24px;
+
+    background: var(--bg-card);
+    backdrop-filter: blur(18px);
+
+    box-shadow: var(--shadow);
+}
+
+.reviews-empty-icon {
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 23px;
+
+    background: rgba(0, 191, 166, 0.12);
+    color: var(--primary);
+
+    font-size: 2rem;
+}
+
+.reviews-empty h3 {
+    font-family: var(--font-heading);
+    font-size: 1.45rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.reviews-empty p {
+    max-width: 510px;
+    margin: 0 auto 23px;
+    font-size: 0.88rem;
+}
+
+/* Customer Review CTA */
+
+.reviews-bottom {
+    margin-top: 45px;
+    padding: 32px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 22px;
+
+    background: var(--bg-card);
+    backdrop-filter: blur(18px);
+
+    box-shadow: var(--shadow);
+}
+
+.reviews-bottom h4 {
+    font-size: 1.3rem;
+    margin-bottom: 7px;
+}
+
+.reviews-bottom p {
+    margin-bottom: 0;
+    font-size: 0.85rem;
+}
+
+.reviews-bottom .btn-primary-custom {
+    flex-shrink: 0;
+}
+
+/* Responsive */
+
+@media (max-width: 767px) {
+
+    .reviews-section {
+        padding: 75px 0;
+    }
+
+    .review-card {
+        padding: 23px;
+    }
+
+    .reviews-empty {
+        padding: 35px 20px;
+    }
+
+    .reviews-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 24px;
+    }
+
+    .reviews-bottom .btn-primary-custom {
+        width: 100%;
+    }
+
+}
+
+
+/* =========================================
+   FINAL BOOKING CTA
+========================================= */
+
+.final-cta-section {
+    position: relative;
+    min-height: 480px;
+    padding: 110px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+    isolation: isolate;
+
+    background-color: #07354A;
+
+    background-image:
+        linear-gradient(
+            100deg,
+            rgba(4, 29, 44, 0.88),
+            rgba(0, 75, 100, 0.68),
+            rgba(0, 34, 54, 0.82)
+        ),
+        url("{% static 'img/cta-cebu.jpg' %}");
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* Turquoise Glow */
+
+.final-cta-section::before {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    left: -150px;
+    top: -180px;
+
+    border-radius: 50%;
+    background: rgba(0, 191, 166, 0.22);
+    filter: blur(100px);
+
+    pointer-events: none;
+}
+
+.final-cta-section::after {
+    content: "";
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    right: -130px;
+    bottom: -180px;
+
+    border-radius: 50%;
+    background: rgba(0, 140, 203, 0.28);
+    filter: blur(100px);
+
+    pointer-events: none;
+}
+
+.final-cta-content {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+
+    text-align: center;
+}
+
+/* Eyebrow */
+
+.final-cta-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    padding: 10px 17px;
+    margin-bottom: 24px;
+
+    border: 1px solid rgba(255,255,255,0.30);
+    border-radius: 50px;
+
+    background: rgba(255,255,255,0.10);
+    backdrop-filter: blur(14px);
+
+    color: #80FFE8;
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+/* Heading */
+
+.final-cta-title {
+    color: #ffffff;
+
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4.3rem);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -1.8px;
+
+    margin-bottom: 22px;
+}
+
+.final-cta-title span {
+    background: linear-gradient(
+        110deg,
+        #65FFE0,
+        #42BFFF
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Description */
+
+.final-cta-description {
+    max-width: 650px;
+    margin: 0 auto 32px;
+
+    color: rgba(255,255,255,0.86);
+    font-size: 1.03rem;
+    line-height: 1.8;
+}
+
+/* Buttons */
+
+.final-cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+
+.final-cta-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    min-height: 54px;
+    padding: 14px 26px;
+
+    background: linear-gradient(
+        110deg,
+        #00BFA6,
+        #008CCB
+    );
+
+    border: 1px solid transparent;
+    border-radius: 14px;
+
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 800;
+
+    box-shadow: 0 8px 26px rgba(0, 191, 166, 0.28);
+
+    transition: var(--transition);
+}
+
+.final-cta-primary:hover {
+    color: #ffffff;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(0, 191, 166, 0.40);
+}
+
+.final-cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    min-height: 54px;
+    padding: 14px 26px;
+
+    border: 1px solid rgba(255,255,255,0.55);
+    border-radius: 14px;
+
+    background: rgba(255,255,255,0.10);
+    backdrop-filter: blur(12px);
+
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 800;
+
+    transition: var(--transition);
+}
+
+.final-cta-secondary:hover {
+    background: #ffffff;
+    color: #006F82;
+    transform: translateY(-4px);
+}
+
+/* Bottom Note */
+
+.final-cta-note {
+    margin-top: 28px;
+    color: rgba(255,255,255,0.74);
+    font-size: 0.79rem;
+}
+
+.final-cta-note i {
+    color: #65FFE0;
+    margin-right: 6px;
+}
+
+/* Responsive */
+
+@media (max-width: 767px) {
+
+    .final-cta-section {
+        min-height: auto;
+        padding: 85px 18px;
+        background-attachment: scroll;
+    }
+
+    .final-cta-title {
+        font-size: 2.6rem;
+        letter-spacing: -1px;
+    }
+
+    .final-cta-description {
+        font-size: 0.91rem;
+    }
+
+    .final-cta-buttons {
+        flex-direction: column;
+    }
+
+    .final-cta-buttons a {
+        width: 100%;
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .final-cta-primary,
+    .final-cta-secondary {
+        transition: none;
+    }
+
+}
+
+
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+
+<!-- =========================================
+     HERO SECTION
+========================================= -->
+
+<section class="hero-section" id="home">
+
+    <!-- Decorative Background Glow -->
+
+    <div class="hero-glow hero-glow-one"></div>
+    <div class="hero-glow hero-glow-two"></div>
+
+
+    <div class="container">
+
+        <div class="row align-items-center gy-5">
+
+            <!-- =================================
+                 LEFT SIDE: CONTENT
+            ================================== -->
+
+            <div class="col-lg-6">
+
+                <div class="hero-content">
+
+                    <!-- Location Label -->
+
+                    <div class="hero-label">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        YOUR CEBU ADVENTURE STARTS HERE
+                    </div>
+
+
+                    <!-- Main Headline -->
+
+                    <h1 class="hero-title">
+
+                        Explore Cebu.<br>
+
+                        Ride in <span class="highlight">Comfort.</span><br>
+
+                        Adventure <span class="highlight">Without Limits.</span>
+
+                    </h1>
+
+
+                    <!-- Description -->
+
+                    <p class="hero-description">
+
+                        Discover the beauty of Cebu with Yenyang
+                        Transportation Services & Island Adventures.
+
+                        From comfortable private rides to unforgettable
+                        island experiences, your next adventure starts here.
+
+                    </p>
+
+
+                    <!-- CTA Buttons -->
+
+                    <div class="hero-buttons">
+
+                        <a href="#fleet" class="btn-primary-custom">
+
+                            <i class="bi bi-car-front-fill"></i>
+
+                            Explore Our Fleet
+
+                            <i class="bi bi-arrow-right"></i>
+
+                        </a>
+
+
+                        <a href="#destinations" class="btn-outline-custom">
+
+                            <i class="bi bi-compass"></i>
+
+                            Discover Cebu
+
+                        </a>
+
+                    </div>
+
+
+                    <!-- Trust Highlights -->
+
+                    <div class="hero-highlights">
+
+                        <div class="hero-highlight-item">
+                            <i class="bi bi-check-circle-fill"></i>
+                            Private Transportation
+                        </div>
+
+                        <div class="hero-highlight-item">
+                            <i class="bi bi-check-circle-fill"></i>
+                            Comfortable Rides
+                        </div>
+
+                        <div class="hero-highlight-item">
+                            <i class="bi bi-check-circle-fill"></i>
+                            Island Adventures
+                        </div>
+
+                    </div>
+
+
+                    <!-- =================================
+                         QUICK WHATSAPP INQUIRY
+                    ================================== -->
+
+                    <div class="hero-inquiry glass">
+
+                        <div class="inquiry-heading">
+
+                            <div class="inquiry-icon">
+                                <i class="bi bi-send-fill"></i>
+                            </div>
+
+                            <div>
+                                <h5>Plan Your Cebu Adventure</h5>
+
+                                <p>Tell us where you want to go!</p>
+                            </div>
+
+                        </div>
+
+
+                        <form id="heroInquiryForm"
+                              data-whatsapp-number="639XXXXXXXXX">
+
+
+                            <div class="row">
+
+                                <!-- Service Type -->
+
+                                <div class="col-md-6">
+
+                                    <div class="inquiry-field">
+
+                                        <label for="heroService">
+                                            What do you need?
+                                        </label>
+
+                                        <select class="form-select"
+                                                id="heroService"
+                                                required>
+
+                                            <option value="" selected disabled>
+                                                Select service
+                                            </option>
+
+                                            <option value="Vehicle Rental">
+                                                Vehicle Rental
+                                            </option>
+
+                                            <option value="Cebu Tour Package">
+                                                Cebu Tour Package
+                                            </option>
+
+                                            <option value="Airport Transfer">
+                                                Airport Transfer
+                                            </option>
+
+                                            <option value="Private Transportation">
+                                                Private Transportation
+                                            </option>
+
+                                        </select>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Destination -->
+
+                                <div class="col-md-6">
+
+                                    <div class="inquiry-field">
+
+                                        <label for="heroDestination">
+                                            Preferred Destination
+                                        </label>
+
+                                        <select class="form-select"
+                                                id="heroDestination"
+                                                required>
+
+                                            <option value="" selected disabled>
+                                                Choose destination
+                                            </option>
+
+                                            <option>Oslob Whale Sharks</option>
+
+                                            <option>Kawasan Canyoneering</option>
+
+                                            <option>Moalboal Sardine Run</option>
+
+                                            <option>Bantayan Island</option>
+
+                                            <option>Cebu City Heritage Tour</option>
+
+                                            <option>Airport / Hotel Transfer</option>
+
+                                            <option>Other / Custom Itinerary</option>
+
+                                        </select>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Date -->
+
+                                <div class="col-md-6">
+
+                                    <div class="inquiry-field">
+
+                                        <label for="heroDate">
+                                            Travel Date
+                                        </label>
+
+                                        <input type="date"
+                                               class="form-control"
+                                               id="heroDate"
+                                               required>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- Guests -->
+
+                                <div class="col-md-6">
+
+                                    <div class="inquiry-field">
+
+                                        <label for="heroGuests">
+                                            Number of Passengers
+                                        </label>
+
+                                        <input type="number"
+                                               class="form-control"
+                                               id="heroGuests"
+                                               min="1"
+                                               max="100"
+                                               placeholder="e.g. 6"
+                                               value="2"
+                                               required>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Submit -->
+
+                            <button type="submit" class="inquiry-submit">
+
+                                <i class="bi bi-whatsapp me-2"></i>
+
+                                Send Inquiry via WhatsApp
+
+                                <i class="bi bi-arrow-up-right ms-2"></i>
+
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 RIGHT SIDE: VEHICLE VISUAL
+            ================================== -->
+
+            <div class="col-lg-6 hero-visual-column">
+
+                <div class="hero-visual-wrapper">
+
+
+                    <!-- Main Vehicle Image -->
+
+                    <div class="hero-vehicle-image"
+                         role="img"
+                         aria-label="Yenyang luxury passenger transportation vehicle">
+
+                        <div class="hero-image-caption">
+
+                            <span>TRAVEL WITH YENYANG</span>
+
+                            <h3>Your Journey. Your Adventure.</h3>
+
+                            <p>
+                                Discover more of Cebu with comfort and confidence.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Floating Card 1 -->
+
+                    <div class="hero-floating-card top">
+
+                        <div class="hero-floating-icon">
+                            <i class="bi bi-car-front-fill"></i>
+                        </div>
+
+                        <div>
+                            <strong>Comfortable Rides</strong>
+                            <small>Travel your way</small>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Floating Card 2 -->
+
+                    <div class="hero-floating-card bottom">
+
+                        <div class="hero-floating-icon">
+                            <i class="bi bi-water"></i>
+                        </div>
+
+                        <div>
+                            <strong>Explore Cebu</strong>
+                            <small>Discover island adventures</small>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     VEHICLE FLEET SHOWCASE
+========================================= -->
+
+<section class="fleet-section" id="fleet">
+
+    <div class="container">
+
+        <!-- Section Heading -->
+
+        <div class="text-center">
+
+            <span class="section-eyebrow">
+                <i class="bi bi-car-front-fill"></i>
+                TRAVEL YOUR WAY
+            </span>
+
+            <h2 class="section-title">
+                Find Your Perfect <span>Ride.</span>
+            </h2>
+
+            <p class="section-description">
+                From comfortable city rides to spacious group transportation,
+                we have the right vehicle for every Cebu adventure.
+            </p>
+
+        </div>
+
+
+        <!-- Category Filter Toolbar -->
+
+        <div class="fleet-toolbar">
+
+            <div class="fleet-filter-buttons"
+                 id="fleetFilters"
+                 role="group"
+                 aria-label="Filter vehicles by category">
+
+                {% for category in vehicle_categories %}
+
+                    <button
+                        type="button"
+                        class="fleet-filter-btn {% if forloop.first %}active{% endif %}"
+                        data-filter="{{ category.id }}"
+                        aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}"
+                    >
+                        {{ category.name }}
+                    </button>
+
+                {% endfor %}
+
+            </div>
+
+
+            <div class="fleet-result-count" id="fleetResultCount">
+                <i class="bi bi-car-front me-1"></i>
+                {{ vehicles|length }} vehicles available
+            </div>
+
+        </div>
+
+
+        <!-- Vehicle Cards -->
+
+        <div class="row g-4" id="vehicleGrid">
+
+            {% for vehicle in vehicles %}
+
+                <div
+                    class="col-lg-4 col-md-6 vehicle-grid-item"
+                    data-category="{{ vehicle.category }}"
+                >
+
+                    <div class="vehicle-card">
+
+                        <!-- Vehicle Image -->
+
+                        <div class="vehicle-image-wrapper">
+
+                            <img
+                                src="{% static vehicle.image %}"
+                                alt="{{ vehicle.name }} - {{ vehicle.type }}"
+                                class="vehicle-image"
+                                loading="lazy"
+                            >
+
+                            {% if vehicle.featured %}
+
+                                <span class="vehicle-featured-badge">
+                                    <i class="bi bi-star-fill me-1"></i>
+                                    FEATURED
+                                </span>
+
+                            {% endif %}
+
+
+                            <span class="vehicle-category-badge">
+                                {{ vehicle.type }}
+                            </span>
+
+                        </div>
+
+
+                        <!-- Vehicle Information -->
+
+                        <div class="vehicle-card-body">
+
+                            <span class="vehicle-type">
+                                Yenyang Fleet
+                            </span>
+
+                            <h3 class="vehicle-name">
+                                {{ vehicle.name }}
+                            </h3>
+
+                            <p class="vehicle-description">
+                                {{ vehicle.description }}
+                            </p>
+
+
+                            <!-- Specifications -->
+
+                            <div class="vehicle-specs">
+
+                                <div class="vehicle-spec">
+
+                                    <i class="bi bi-people-fill"></i>
+
+                                    <div>
+                                        <strong>Passengers</strong>
+                                        <small>{{ vehicle.passengers }}</small>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="vehicle-spec">
+
+                                    <i class="bi bi-luggage-fill"></i>
+
+                                    <div>
+                                        <strong>Luggage</strong>
+                                        <small>{{ vehicle.luggage }}</small>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="vehicle-spec">
+
+                                    <i class="bi bi-gear-fill"></i>
+
+                                    <div>
+                                        <strong>Transmission</strong>
+                                        <small>{{ vehicle.transmission }}</small>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="vehicle-spec">
+
+                                    <i class="bi bi-snow2"></i>
+
+                                    <div>
+                                        <strong>Air Conditioning</strong>
+                                        <small>
+                                            {% if vehicle.full_ac %}
+                                                Full A/C
+                                            {% else %}
+                                                Ask for details
+                                            {% endif %}
+                                        </small>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <!-- Feature Badges -->
+
+                            <div class="vehicle-feature-list">
+
+                                {% if vehicle.with_chauffeur %}
+
+                                    <span class="vehicle-feature-tag">
+                                        <i class="bi bi-person-check-fill"></i>
+                                        With Chauffeur
+                                    </span>
+
+                                {% endif %}
+
+
+                                {% if vehicle.full_ac %}
+
+                                    <span class="vehicle-feature-tag">
+                                        <i class="bi bi-snow"></i>
+                                        Full A/C
+                                    </span>
+
+                                {% endif %}
+
+
+                                <span class="vehicle-feature-tag">
+                                    <i class="bi bi-briefcase-fill"></i>
+                                    Luggage Space
+                                </span>
+
+                            </div>
+
+
+                            <!-- Rate -->
+
+                            <div class="vehicle-rate-area">
+
+                                <div>
+
+                                    <span class="vehicle-rate-label">
+                                        Starting indicative rate
+                                    </span>
+
+                                    <div>
+                                        <span class="vehicle-rate">
+                                            {{ vehicle.rate }}
+                                        </span>
+
+                                        <span class="vehicle-rate-unit">
+                                            {{ vehicle.rate_unit }}
+                                        </span>
+                                    </div>
+
+                                    <small class="vehicle-rate-note">
+                                        {{ vehicle.rate_note }}
+                                    </small>
+
+                                </div>
+
+                                <i class="bi bi-arrow-up-right-circle"
+                                   style="font-size: 1.5rem; color: var(--primary);">
+                                </i>
+
+                            </div>
+
+
+                            <!-- WhatsApp Inquiry -->
+
+                            <a
+                                href="#"
+                                class="vehicle-inquire-btn"
+                                data-vehicle-name="{{ vehicle.name }}"
+                                data-vehicle-type="{{ vehicle.type }}"
+                                data-vehicle-passengers="{{ vehicle.passengers }}"
+                            >
+
+                                <i class="bi bi-whatsapp"></i>
+
+                                Inquire About This Vehicle
+
+                                <i class="bi bi-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            {% empty %}
+
+                <div class="col-12 text-center py-5">
+                    <p>No vehicles are currently available for display.</p>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- Rate Disclaimer -->
+
+        <p class="fleet-disclaimer">
+            <i class="bi bi-info-circle me-1"></i>
+            Displayed rates are sample estimates only.
+            Actual quotations depend on destination, rental duration,
+            inclusions, and vehicle availability.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     CEBU DESTINATIONS SHOWCASE
+========================================= -->
+
+<section class="destinations-section" id="destinations">
+
+    <div class="container">
+
+        <!-- Section Heading -->
+
+        <div class="destinations-heading">
+
+            <span class="section-eyebrow">
+                <i class="bi bi-globe-asia-australia"></i>
+                DISCOVER THE BEAUTY OF CEBU
+            </span>
+
+            <h2 class="section-title">
+                Your Next <span>Adventure</span> Awaits.
+            </h2>
+
+            <p class="section-description">
+                From breathtaking waterfalls and crystal-clear waters
+                to beautiful island escapes and historical landmarks,
+                discover the unforgettable experiences Cebu has to offer.
+            </p>
+
+        </div>
+
+
+        <!-- Destination Cards -->
+
+        <div class="row destination-grid">
+
+            {% for destination in destinations %}
+
+                <div class="{% if forloop.first %}col-lg-8{% else %}col-lg-4{% endif %} col-md-6">
+
+                    <article class="destination-card">
+
+                        <!-- Destination Image -->
+
+                        <img
+                            src="{% static destination.image %}"
+                            class="destination-image"
+                            alt="{{ destination.name }}"
+                            loading="lazy"
+                        >
+
+                        <div class="destination-overlay"></div>
+
+
+                        <!-- Top Information -->
+
+                        <div class="destination-top">
+
+                            <span class="destination-number">
+                                DESTINATION {{ forloop.counter|stringformat:"02d" }}
+                            </span>
+
+                            <span class="destination-icon">
+                                <i class="bi {{ destination.icon }}"></i>
+                            </span>
+
+                        </div>
+
+
+                        <!-- Destination Content -->
+
+                        <div class="destination-content">
+
+                            <span class="destination-location">
+
+                                <i class="bi bi-geo-alt-fill"></i>
+
+                                {{ destination.location }}
+
+                            </span>
+
+
+                            <h3 class="destination-title">
+                                {{ destination.name }}
+                            </h3>
+
+
+                            <p class="destination-tagline">
+                                {{ destination.tagline }}
+                            </p>
+
+
+                            <p class="destination-description">
+                                {{ destination.description }}
+                            </p>
+
+
+                            <!-- Destination Footer -->
+
+                            <div class="destination-footer">
+
+                                <span class="destination-duration">
+
+                                    <i class="bi bi-clock"></i>
+
+                                    {{ destination.duration }}
+
+                                </span>
+
+
+                                <a
+                                    href="#"
+                                    class="destination-inquire-btn"
+                                    data-destination-name="{{ destination.name }}"
+                                    data-destination-location="{{ destination.location }}"
+                                    data-destination-duration="{{ destination.duration }}"
+                                >
+
+                                    <i class="bi bi-whatsapp"></i>
+
+                                    Inquire Now
+
+                                    <i class="bi bi-arrow-up-right"></i>
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            {% empty %}
+
+                <div class="col-12 text-center py-5">
+                    <p>Our Cebu destinations are being prepared.</p>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- Bottom CTA -->
+
+        <div class="destinations-bottom">
+
+            <div>
+
+                <h4>
+                    Can't decide where to go?
+                </h4>
+
+                <p>
+                    Tell us what kind of adventure you're looking for
+                    and let's plan your Cebu trip together.
+                </p>
+
+            </div>
+
+
+            <a
+                href="https://wa.me/639XXXXXXXXX?text=Hi%20Yenyang!%20I%20need%20help%20planning%20my%20Cebu%20adventure."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-primary-custom"
+            >
+
+                <i class="bi bi-whatsapp"></i>
+
+                Plan My Adventure
+
+                <i class="bi bi-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     FEATURED TOUR PACKAGES
+========================================= -->
+
+<section class="tours-section" id="tours">
+
+    <div class="container">
+
+        <!-- Section Heading -->
+
+        <div class="tours-heading">
+
+            <span class="section-eyebrow">
+                <i class="bi bi-backpack-fill"></i>
+                CURATED CEBU EXPERIENCES
+            </span>
+
+            <h2 class="section-title">
+                Choose Your Next
+                <span>Adventure.</span>
+            </h2>
+
+            <p class="section-description">
+                Make unforgettable memories with our featured Cebu
+                experiences. Choose your destination, explore the
+                highlights, and let Yenyang help plan your journey.
+            </p>
+
+        </div>
+
+
+        <!-- Tour Package Cards -->
+
+        <div class="row g-4">
+
+            {% for package in tour_packages %}
+
+                <div class="col-lg-4 col-md-6">
+
+                    <article class="tour-card">
+
+                        <!-- Package Image -->
+
+                        <div class="tour-image-wrapper">
+
+                            <img
+                                src="{% static package.image %}"
+                                alt="{{ package.name }}"
+                                class="tour-image"
+                                loading="lazy"
+                            >
+
+                            {% if package.featured %}
+
+                                <span class="tour-featured-badge">
+                                    <i class="bi bi-star-fill me-1"></i>
+                                    FEATURED EXPERIENCE
+                                </span>
+
+                            {% endif %}
+
+                            <span class="tour-duration-badge">
+                                <i class="bi bi-clock-fill"></i>
+                                {{ package.duration }}
+                            </span>
+
+                        </div>
+
+
+                        <!-- Package Information -->
+
+                        <div class="tour-card-body">
+
+                            <span class="tour-category">
+                                <i class="bi bi-compass-fill"></i>
+                                {{ package.package_type }}
+                            </span>
+
+
+                            <h3 class="tour-title">
+                                {{ package.name }}
+                            </h3>
+
+
+                            <!-- Package Highlights -->
+
+                            <div class="tour-highlights-heading">
+                                Experience Highlights
+                            </div>
+
+                            <ul class="tour-highlights">
+
+                                {% for highlight in package.highlights %}
+
+                                    <li>
+                                        <i class="bi bi-check-circle-fill"></i>
+                                        <span>{{ highlight }}</span>
+                                    </li>
+
+                                {% endfor %}
+
+                            </ul>
+
+
+                            <!-- Package Pricing -->
+
+                            <div class="tour-price-area">
+
+                                <span class="tour-price-label">
+                                    Indicative starting price
+                                </span>
+
+                                <div>
+
+                                    <span class="tour-price">
+                                        {{ package.price }}
+                                    </span>
+
+                                    <span class="tour-price-unit">
+                                        {{ package.price_unit }}
+                                    </span>
+
+                                </div>
+
+                                <small class="tour-price-note">
+                                    {{ package.price_note }}
+                                </small>
+
+                            </div>
+
+
+                            <!-- WhatsApp Inquiry -->
+
+                            <a
+                                href="#"
+                                class="tour-inquire-btn"
+                                data-package-name="{{ package.name }}"
+                                data-package-duration="{{ package.duration }}"
+                                data-package-category="{{ package.package_type }}"
+                                data-package-price="{{ package.price }}"
+                                data-package-highlights="{% for highlight in package.highlights %}{{ highlight }}{% if not forloop.last %} | {% endif %}{% endfor %}"
+                            >
+
+                                <i class="bi bi-whatsapp"></i>
+
+                                Inquire About This Package
+
+                                <i class="bi bi-arrow-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            {% empty %}
+
+                <div class="col-12 text-center py-5">
+                    <p>Our tour packages are currently being prepared.</p>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- Pricing Disclaimer -->
+
+        <p class="tour-disclaimer">
+
+            <i class="bi bi-info-circle me-1"></i>
+
+            All displayed package prices are sample estimates only.
+            Actual rates, inclusions, entrance fees, transportation,
+            availability, and booking conditions must be confirmed
+            directly with Yenyang.
+
+        </p>
+
+
+        <!-- Bottom CTA -->
+
+        <div class="tours-cta">
+
+            <div>
+
+                <h3>
+                    Have a different Cebu itinerary in mind?
+                </h3>
+
+                <p>
+                    We can discuss a customized trip based on
+                    your preferred destinations and group size.
+                </p>
+
+            </div>
+
+
+            <a
+                href="https://wa.me/639XXXXXXXXX?text=Hi%20Yenyang!%20I%20would%20like%20to%20inquire%20about%20a%20customized%20Cebu%20tour."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-primary-custom"
+            >
+
+                <i class="bi bi-whatsapp"></i>
+
+                Customize My Tour
+
+                <i class="bi bi-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     WHY CHOOSE YENYANG
+========================================= -->
+
+<section class="why-section" id="about">
+
+    <div class="container">
+
+        <!-- Section Heading -->
+
+        <div class="why-heading">
+
+            <span class="section-eyebrow">
+                <i class="bi bi-stars"></i>
+                THE YENYANG EXPERIENCE
+            </span>
+
+            <h2 class="section-title">
+                More Than Just a Ride.
+                <span>It's Your Adventure.</span>
+            </h2>
+
+            <p class="section-description">
+                Every journey deserves a comfortable ride and
+                unforgettable experiences. Let Yenyang be part
+                of your next Cebu adventure.
+            </p>
+
+        </div>
+
+
+        <!-- Benefit Cards -->
+
+        <div class="row g-4">
+
+            {% for benefit in why_choose_yenyang %}
+
+                <div class="col-lg-3 col-md-6">
+
+                    <article class="why-card">
+
+                        <!-- Icon -->
+
+                        <div class="why-icon">
+                            <i class="bi {{ benefit.icon }}"></i>
+                        </div>
+
+
+                        <!-- Content -->
+
+                        <h3>
+                            {{ benefit.title }}
+                        </h3>
+
+                        <p>
+                            {{ benefit.description }}
+                        </p>
+
+
+                        <!-- Decorative Number -->
+
+                        <span class="why-card-number">
+                            {{ forloop.counter|stringformat:"02d" }}
+                        </span>
+
+                    </article>
+
+                </div>
+
+            {% empty %}
+
+                <div class="col-12 text-center">
+                    <p>Our travel services are being updated.</p>
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+        <!-- Trust / Inquiry Banner -->
+
+        <div class="why-banner">
+
+            <div class="why-banner-content">
+
+                <h3>
+                    Your Cebu Story Starts with Yenyang.
+                </h3>
+
+                <p>
+                    Ready to explore? Let's make your next journey
+                    memorable, comfortable, and exciting.
+                </p>
+
+            </div>
+
+
+            <a
+                href="https://wa.me/639XXXXXXXXX?text=Hi%20Yenyang!%20I'm%20ready%20to%20plan%20my%20Cebu%20adventure."
+                class="btn"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+
+                <i class="bi bi-whatsapp me-2"></i>
+
+                Let's Get Started
+
+                <i class="bi bi-arrow-up-right ms-2"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     CUSTOMER REVIEWS & TESTIMONIALS
+========================================= -->
+
+<section class="reviews-section" id="reviews">
+
+    <div class="container">
+
+        <!-- Section Heading -->
+
+        <div class="reviews-heading">
+
+            <span class="section-eyebrow">
+                <i class="bi bi-chat-heart-fill"></i>
+                STORIES FROM OUR TRAVELERS
+            </span>
+
+            <h2 class="section-title">
+                Memories Worth
+                <span>Sharing.</span>
+            </h2>
+
+            <p class="section-description">
+                Every journey tells a story.
+                Discover genuine experiences shared by travelers
+                who have explored Cebu with Yenyang.
+            </p>
+
+        </div>
+
+
+        <!-- Customer Reviews -->
+
+        {% if customer_reviews %}
+
+            <div class="row g-4 reviews-grid">
+
+                {% for review in customer_reviews %}
+
+                    <div class="col-lg-4 col-md-6">
+
+                        <article class="review-card">
+
+                            <!-- Review Header -->
+
+                            <div class="review-top">
+
+                                <i class="bi bi-quote review-quote-icon"></i>
+
+                                <span class="review-service-badge">
+                                    {{ review.service }}
+                                </span>
+
+                            </div>
+
+
+                            <!-- Star Rating -->
+
+                            <div class="review-stars"
+                                 role="img"
+                                 aria-label="{{ review.rating }} out of 5 stars">
+
+                                {% for star in "12345" %}
+
+                                    {% if forloop.counter <= review.rating %}
+
+                                        <i class="bi bi-star-fill"></i>
+
+                                    {% else %}
+
+                                        <i class="bi bi-star"></i>
+
+                                    {% endif %}
+
+                                {% endfor %}
+
+                                <span class="review-rating-number">
+                                    {{ review.rating }}/5
+                                </span>
+
+                            </div>
+
+
+                            <!-- Review Message -->
+
+                            <p class="review-message">
+                                "{{ review.quote }}"
+                            </p>
+
+
+                            <!-- Customer Information -->
+
+                            <div class="review-customer">
+
+                                <div class="review-avatar">
+                                    {{ review.initials }}
+                                </div>
+
+                                <div class="review-customer-info">
+
+                                    <strong>
+                                        {{ review.name }}
+                                    </strong>
+
+                                    <small>
+                                        {{ review.location }}
+                                    </small>
+
+                                    <span class="review-date">
+                                        {{ review.date }}
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </article>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+
+        {% else %}
+
+
+            <!-- Honest Empty State -->
+
+            <div class="reviews-empty">
+
+                <div class="reviews-empty-icon">
+                    <i class="bi bi-chat-square-heart-fill"></i>
+                </div>
+
+                <h3>
+                    Your Adventure Could Be Our Next Story!
+                </h3>
+
+                <p>
+                    We look forward to sharing real travel experiences
+                    and feedback from our Yenyang customers.
+                    Have traveled with us? We'd love to hear about it.
+                </p>
+
+                <a
+                    href="https://wa.me/639XXXXXXXXX?text=Hi%20Yenyang!%20I%20would%20like%20to%20share%20my%20travel%20experience."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn-primary-custom"
+                >
+
+                    <i class="bi bi-whatsapp"></i>
+
+                    Share Your Experience
+
+                </a>
+
+            </div>
+
+        {% endif %}
+
+
+        <!-- Bottom Customer CTA -->
+
+        <div class="reviews-bottom">
+
+            <div>
+
+                <h4>
+                    Ready to create your own Cebu memories?
+                </h4>
+
+                <p>
+                    Let Yenyang help make your next trip an adventure
+                    worth remembering.
+                </p>
+
+            </div>
+
+            <a
+                href="https://wa.me/639XXXXXXXXX?text=Hi%20Yenyang!%20I%20would%20like%20to%20plan%20my%20Cebu%20adventure."
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn-primary-custom"
+            >
+
+                <i class="bi bi-whatsapp"></i>
+
+                Plan Your Journey
+
+                <i class="bi bi-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     FINAL BOOKING CALL TO ACTION
+========================================= -->
+
+<section class="final-cta-section" id="booking">
+
+    <div class="container">
+
+        <div class="final-cta-content">
+
+            <!-- Eyebrow -->
+
+            <div class="final-cta-eyebrow">
+
+                <i class="bi bi-compass-fill"></i>
+
+                YOUR NEXT ADVENTURE STARTS HERE
+
+            </div>
+
+
+            <!-- Main Heading -->
+
+            <h2 class="final-cta-title">
+
+                Ready to Explore <span>Cebu?</span>
+
+                <br>
+
+                Let's Make It Unforgettable.
+
+            </h2>
+
+
+            <!-- Description -->
+
+            <p class="final-cta-description">
+
+                Whether you're planning a family vacation,
+                a barkada getaway, a corporate trip, or a
+                breathtaking island adventure, Yenyang is
+                ready to help you plan your journey.
+
+            </p>
+
+
+            <!-- CTA Buttons -->
+
+            <div class="final-cta-buttons">
+
+                <!-- WhatsApp Inquiry -->
+
+                <a
+                    href="https://wa.me/639XXXXXXXXX?text=Hi%20Yenyang%20Transportation%20Services%20and%20Island%20Adventures!%20I%20would%20like%20to%20plan%20my%20Cebu%20trip.%20Could%20you%20help%20me%20with%20your%20available%20vehicles%20and%20tour%20packages%3F"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="final-cta-primary"
+                >
+
+                    <i class="bi bi-whatsapp"></i>
+
+                    Book Your Journey
+
+                    <i class="bi bi-arrow-up-right"></i>
+
+                </a>
+
+
+                <!-- Fleet Button -->
+
+                <a
+                    href="#fleet"
+                    class="final-cta-secondary"
+                >
+
+                    <i class="bi bi-car-front-fill"></i>
+
+                    Explore Our Fleet
+
+                </a>
+
+            </div>
+
+
+            <!-- Bottom Note -->
+
+            <p class="final-cta-note">
+
+                <i class="bi bi-check-circle-fill"></i>
+
+                Your adventure. Your destination. Your journey with Yenyang.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}
+
+
+
+{% block extra_js %}
+
+<script>
+
+/* =========================================
+   HERO WHATSAPP INQUIRY
+========================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const inquiryForm = document.getElementById("heroInquiryForm");
+
+    const dateInput = document.getElementById("heroDate");
+
+    // Prevent selecting past dates
+    const today = new Date();
+
+    const localToday = new Date(
+        today.getTime() - today.getTimezoneOffset() * 60000
+    ).toISOString().split("T")[0];
+
+    dateInput.min = localToday;
+
+
+    inquiryForm.addEventListener("submit", function (event) {
+
+        event.preventDefault();
+
+        if (!inquiryForm.checkValidity()) {
+            inquiryForm.reportValidity();
+            return;
+        }
+
+        const whatsappNumber = inquiryForm.dataset.whatsappNumber;
+
+        const service = document.getElementById("heroService").value;
+
+        const destination = document.getElementById("heroDestination").value;
+
+        const travelDate = document.getElementById("heroDate").value;
+
+        const guests = document.getElementById("heroGuests").value;
+
+
+        // Format date for the message
+        const formattedDate = new Date(
+            travelDate + "T12:00:00"
+        ).toLocaleDateString("en-PH", {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        });
+
+
+        // Build WhatsApp inquiry message
+        const message =
+
+`Hello Yenyang Transportation Services & Island Adventures!
+
+I would like to inquire about your services.
+
+Service: ${service}
+Destination: ${destination}
+Travel Date: ${formattedDate}
+Number of Passengers: ${guests}
+
+Please send me your package details, rates, and availability.
+
+Thank you!`;
+
+
+        // Open WhatsApp
+        const whatsappURL =
+            "https://wa.me/" +
+            whatsappNumber +
+            "?text=" +
+            encodeURIComponent(message);
+
+        window.open(whatsappURL, "_blank", "noopener,noreferrer");
+
+    });
+
+});
+
+
+/* =========================================
+   VEHICLE CATEGORY FILTER
+========================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const filterButtons = document.querySelectorAll(
+        ".fleet-filter-btn"
+    );
+
+    const vehicleCards = document.querySelectorAll(
+        ".vehicle-grid-item"
+    );
+
+    const resultCount = document.getElementById(
+        "fleetResultCount"
+    );
+
+
+    // Filter vehicles
+
+    filterButtons.forEach(function (button) {
+
+        button.addEventListener("click", function () {
+
+            const selectedCategory = this.dataset.filter;
+
+            // Update active button
+
+            filterButtons.forEach(function (btn) {
+
+                btn.classList.remove("active");
+
+                btn.setAttribute("aria-pressed", "false");
+
+            });
+
+            this.classList.add("active");
+
+            this.setAttribute("aria-pressed", "true");
+
+
+            // Show matching vehicles
+
+            let visibleCount = 0;
+
+            vehicleCards.forEach(function (card) {
+
+                const vehicleCategory = card.dataset.category;
+
+                const matches =
+                    selectedCategory === "all" ||
+                    selectedCategory === vehicleCategory;
+
+                card.style.display = matches ? "" : "none";
+
+                if (matches) {
+                    visibleCount++;
+                }
+
+            });
+
+
+            // Update results count
+
+            resultCount.innerHTML =
+                '<i class="bi bi-car-front me-1"></i> ' +
+                visibleCount +
+                (visibleCount === 1
+                    ? " vehicle available"
+                    : " vehicles available");
+
+        });
+
+    });
+
+
+    // =====================================
+    // VEHICLE-SPECIFIC WHATSAPP INQUIRY
+    // =====================================
+
+    const vehicleInquiryButtons = document.querySelectorAll(
+        ".vehicle-inquire-btn"
+    );
+
+    vehicleInquiryButtons.forEach(function (button) {
+
+        button.addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            const vehicleName = this.dataset.vehicleName;
+
+            const vehicleType = this.dataset.vehicleType;
+
+            const passengers = this.dataset.vehiclePassengers;
+
+
+            const whatsappNumber = "639XXXXXXXXX";
+
+
+            const message =
+
+`Hello Yenyang Transportation Services & Island Adventures!
+
+I would like to inquire about renting the following vehicle:
+
+Vehicle: ${vehicleName}
+Vehicle Type: ${vehicleType}
+Passenger Capacity: ${passengers}
+
+Please provide your current rental rates, availability, inclusions, and rental conditions.
+
+Thank you!`;
+
+
+            const whatsappURL =
+                "https://wa.me/" +
+                whatsappNumber +
+                "?text=" +
+                encodeURIComponent(message);
+
+
+            window.open(
+                whatsappURL,
+                "_blank",
+                "noopener,noreferrer"
+            );
+
+        });
+
+    });
+
+});
+
+
+
+/* =========================================
+   DESTINATION WHATSAPP INQUIRY
+========================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const destinationButtons = document.querySelectorAll(
+        ".destination-inquire-btn"
+    );
+
+    destinationButtons.forEach(function (button) {
+
+        button.addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            const destinationName =
+                this.dataset.destinationName;
+
+            const destinationLocation =
+                this.dataset.destinationLocation;
+
+            const destinationDuration =
+                this.dataset.destinationDuration;
+
+
+            // Replace with actual company WhatsApp number
+            const whatsappNumber = "639XXXXXXXXX";
+
+
+            // Prepare inquiry message
+            const message =
+
+`Hello Yenyang Transportation Services & Island Adventures!
+
+I'm interested in visiting:
+
+Destination: ${destinationName}
+Location: ${destinationLocation}
+Tour Duration: ${destinationDuration}
+
+Could you please provide:
+
+1. Available tour packages
+2. Transportation options
+3. Package inclusions and exclusions
+4. Estimated rates
+5. Available travel dates
+
+Thank you! I'm excited to explore Cebu with Yenyang!`;
+
+
+            // Generate WhatsApp URL
+            const whatsappURL =
+                "https://wa.me/" +
+                whatsappNumber +
+                "?text=" +
+                encodeURIComponent(message);
+
+
+            // Open WhatsApp
+            window.open(
+                whatsappURL,
+                "_blank",
+                "noopener,noreferrer"
+            );
+
+        });
+
+    });
+
+});
+
+
+
+/* =========================================
+   TOUR PACKAGE WHATSAPP INQUIRY
+========================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const packageButtons = document.querySelectorAll(
+        ".tour-inquire-btn"
+    );
+
+    packageButtons.forEach(function (button) {
+
+        button.addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            // Get selected package information
+
+            const packageName =
+                this.dataset.packageName;
+
+            const packageDuration =
+                this.dataset.packageDuration;
+
+            const packageCategory =
+                this.dataset.packageCategory;
+
+            const packagePrice =
+                this.dataset.packagePrice;
+
+            const packageHighlights =
+                this.dataset.packageHighlights;
+
+
+            // Replace with actual company WhatsApp number
+
+            const whatsappNumber = "639XXXXXXXXX";
+
+
+            // Format highlights
+
+            const highlightsList = packageHighlights
+                .split(" | ")
+                .map(item => "• " + item)
+                .join("\n");
+
+
+            // Generate personalized inquiry
+
+            const message =
+
+`Hello Yenyang Transportation Services & Island Adventures!
+
+I'm interested in your Cebu tour package.
+
+Package: ${packageName}
+Tour Type: ${packageCategory}
+Duration: ${packageDuration}
+Displayed Sample Price: ${packagePrice}
+
+Package Highlights:
+${highlightsList}
+
+Could you please provide more information regarding:
+
+1. Actual package quotation
+2. Package inclusions and exclusions
+3. Entrance fees and other charges
+4. Transportation arrangements
+5. Availability and booking requirements
+
+Thank you! I look forward to exploring Cebu with Yenyang.`;
+
+
+            // Generate WhatsApp URL
+
+            const whatsappURL =
+                "https://wa.me/" +
+                whatsappNumber +
+                "?text=" +
+                encodeURIComponent(message);
+
+
+            // Open WhatsApp
+
+            window.open(
+                whatsappURL,
+                "_blank",
+                "noopener,noreferrer"
+            );
+
+        });
+
+    });
+
+});
+
+
+</script>
+
+
+
+{% endblock %}

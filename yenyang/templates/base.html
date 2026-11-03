@@ -1,0 +1,1214 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Explore Cebu. Ride in Comfort. Adventure Without Limits. Discover Cebu tours and premium transportation services with Yenyang.">
+    <meta name="theme-color" content="#00BFA6">
+
+    <title>{% block title %}Yenyang | Cebu Tours & Transportation{% endblock %}</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Bootstrap 5.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <!-- Global CSS -->
+    <style>
+        /* =========================================
+           YENYANG DESIGN SYSTEM
+        ========================================= */
+
+        :root {
+            --primary: #00BFA6;
+            --primary-dark: #009E8A;
+            --secondary: #008CCB;
+            --cyan-glow: rgba(0, 191, 166, 0.25);
+
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+
+            --transition: all 0.3s ease;
+        }
+
+        /* LIGHT MODE */
+        html[data-theme="light"] {
+            --bg-primary: #F5FBFD;
+            --bg-secondary: #EAF7FA;
+            --bg-card: rgba(255, 255, 255, 0.72);
+
+            --text-primary: #102A43;
+            --text-secondary: #52677A;
+
+            --border-color: rgba(0, 140, 203, 0.12);
+            --navbar-bg: rgba(255, 255, 255, 0.78);
+
+            --shadow: 0 8px 32px rgba(15, 70, 100, 0.08);
+        }
+
+        /* DARK MODE */
+        html[data-theme="dark"] {
+            --bg-primary: #071824;
+            --bg-secondary: #0B2433;
+            --bg-card: rgba(17, 39, 54, 0.72);
+
+            --text-primary: #F0FAFF;
+            --text-secondary: #A7C0D0;
+
+            --border-color: rgba(0, 191, 166, 0.15);
+            --navbar-bg: rgba(7, 24, 36, 0.82);
+
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+        }
+
+        /* =========================================
+           GLOBAL STYLES
+        ========================================= */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background 0.35s ease, color 0.35s ease;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        p {
+            color: var(--text-secondary);
+            line-height: 1.75;
+        }
+
+        a {
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        ::selection {
+            background: var(--primary);
+            color: #ffffff;
+        }
+
+        /* =========================================
+           GLASSMORPHISM
+        ========================================= */
+
+        .glass {
+            background: var(--bg-card);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+        }
+
+        /* =========================================
+           NAVBAR
+        ========================================= */
+
+        .navbar {
+            padding: 15px 0;
+            background: var(--navbar-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+
+            transition: var(--transition);
+        }
+
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--text-primary) !important;
+            letter-spacing: -0.5px;
+        }
+
+
+        /* =========================================
+        YENYANG OFFICIAL NAVBAR LOGO
+        ========================================= */
+
+        .navbar-brand.yenyang-navbar-brand {
+            display: flex;
+            align-items: center;
+            padding: 0;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+
+        .navbar-logo-frame {
+            width: 72px;
+            height: 72px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            /* background: #FFFFFF; */
+            /* border-radius: 50%; */
+            overflow: hidden;
+
+            flex-shrink: 0;
+            /* box-shadow: 0 4px 18px rgba(0, 191, 166, 0.15); */
+        }
+
+        .navbar-logo-image {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        @media (max-width: 576px) {
+            .navbar-logo-frame {
+                width: 58px;
+                height: 58px;
+            }
+        }
+
+
+        .navbar-brand.yenyang-navbar-brand:hover {
+            opacity: 0.95;
+            transform: translateY(-2px);
+        }
+
+        /* Mobile */
+
+        @media (max-width: 576px) {
+
+            .navbar-logo-frame {
+                width: 85px;
+                height: 64px;
+            }
+
+            .navbar-brand.yenyang-navbar-brand {
+                margin-right: 8px;
+            }
+
+        }
+
+
+        .brand-icon {
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 13px;
+
+            background: linear-gradient(135deg,
+                    var(--primary),
+                    var(--secondary));
+
+            color: #ffffff;
+            font-size: 1.35rem;
+
+            box-shadow: 0 4px 18px var(--cyan-glow);
+        }
+
+        .brand-highlight {
+            color: var(--primary);
+        }
+
+        .navbar-nav {
+            gap: 5px;
+        }
+
+        .navbar .nav-link {
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.92rem;
+            padding: 10px 15px !important;
+            border-radius: 12px;
+        }
+
+        .navbar .nav-link:hover {
+            color: var(--primary);
+            background: var(--cyan-glow);
+        }
+
+        /* =========================================
+           BUTTONS
+        ========================================= */
+
+        .btn-primary-custom {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+
+            padding: 12px 24px;
+            border: none;
+            border-radius: 14px;
+
+            background: linear-gradient(135deg,
+                    var(--primary),
+                    var(--secondary));
+
+            color: #ffffff;
+            font-family: var(--font-body);
+            font-weight: 700;
+
+            box-shadow: 0 6px 20px var(--cyan-glow);
+
+            transition: var(--transition);
+        }
+
+        .btn-primary-custom:hover {
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px var(--cyan-glow);
+        }
+
+        .btn-outline-custom {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+
+            padding: 12px 24px;
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+
+            color: var(--text-primary);
+            font-weight: 700;
+
+            background: var(--bg-card);
+
+            transition: var(--transition);
+        }
+
+        .btn-outline-custom:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* =========================================
+           THEME TOGGLE
+        ========================================= */
+
+        .theme-toggle {
+            width: 44px;
+            height: 44px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+
+            background: var(--bg-card);
+            color: var(--text-primary);
+
+            font-size: 1.15rem;
+            cursor: pointer;
+
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+            transform: rotate(10deg);
+        }
+
+
+        /* =========================================
+        NAVBAR ACTIONS - DESKTOP ALIGNMENT
+        ========================================= */
+
+        .navbar-actions {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        /* Keep theme toggle and inquiry button aligned */
+
+        .navbar-actions .theme-toggle {
+            flex-shrink: 0;
+        }
+
+        .navbar-actions .btn-primary-custom {
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+
+        /* =========================================
+           WHATSAPP FLOATING BUTTON
+        ========================================= */
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1050;
+
+            width: 60px;
+            height: 60px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #25D366;
+            color: #ffffff;
+
+            border-radius: 50%;
+            font-size: 2rem;
+
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.35);
+
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover {
+            color: #ffffff;
+            transform: scale(1.12);
+            box-shadow: 0 10px 35px rgba(37, 211, 102, 0.45);
+        }
+
+        .whatsapp-tooltip {
+            position: absolute;
+            right: 72px;
+
+            white-space: nowrap;
+            padding: 9px 14px;
+
+            background: var(--bg-card);
+            backdrop-filter: blur(15px);
+
+            color: var(--text-primary);
+            font-size: 0.82rem;
+            font-weight: 700;
+
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transition: var(--transition);
+        }
+
+        .whatsapp-float:hover .whatsapp-tooltip {
+            opacity: 1;
+            visibility: visible;
+        }
+
+
+        /* =========================================
+   PREMIUM YENYANG FOOTER
+========================================= */
+
+        .site-footer {
+            position: relative;
+            overflow: hidden;
+
+            padding: 75px 0 22px;
+
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* Decorative Glow */
+
+        .site-footer::before {
+            content: "";
+            position: absolute;
+
+            width: 350px;
+            height: 350px;
+
+            top: -200px;
+            right: 10%;
+
+            background: rgba(0, 191, 166, 0.09);
+            filter: blur(100px);
+            border-radius: 50%;
+
+            pointer-events: none;
+        }
+
+        /* Footer Content */
+
+        .footer-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            margin-bottom: 20px;
+
+            color: var(--text-primary);
+            font-family: var(--font-heading);
+            font-size: 1.45rem;
+            font-weight: 800;
+        }
+
+        .footer-brand:hover {
+            color: var(--primary);
+        }
+
+        .footer-description {
+            max-width: 330px;
+
+            color: var(--text-secondary);
+            font-size: 0.87rem;
+            line-height: 1.8;
+
+            margin-bottom: 20px;
+        }
+
+        .footer-tagline {
+            color: var(--primary);
+            font-size: 0.78rem;
+            font-weight: 800;
+            line-height: 1.7;
+        }
+
+        /* Column Headings */
+
+        .footer-heading {
+            color: var(--text-primary);
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 800;
+
+            margin-bottom: 22px;
+        }
+
+        /* Footer Navigation */
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .footer-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 600;
+
+            transition: var(--transition);
+        }
+
+        .footer-links a i {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(4px);
+        }
+
+        /* Contact Card */
+
+        .footer-contact-card {
+            padding: 20px;
+
+            border: 1px solid var(--border-color);
+            border-radius: 17px;
+
+            background: var(--bg-card);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            box-shadow: var(--shadow);
+        }
+
+        .footer-contact-icon {
+            width: 44px;
+            height: 44px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 14px;
+
+            border-radius: 13px;
+
+            background: rgba(0, 191, 166, 0.12);
+            color: var(--primary);
+
+            font-size: 1.3rem;
+        }
+
+        .footer-contact-card h5 {
+            font-size: 0.95rem;
+            font-weight: 800;
+            margin-bottom: 7px;
+        }
+
+        .footer-contact-card p {
+            font-size: 0.79rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        /* Contact Button */
+
+        .footer-whatsapp-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+
+            width: 100%;
+            min-height: 43px;
+
+            padding: 10px 15px;
+
+            border-radius: 11px;
+            background: #25D366;
+
+            color: #ffffff;
+            font-size: 0.82rem;
+            font-weight: 800;
+
+            transition: var(--transition);
+        }
+
+        .footer-whatsapp-btn:hover {
+            color: #ffffff;
+            background: #1EBE5D;
+            transform: translateY(-2px);
+        }
+
+        /* Footer Divider */
+
+        .footer-divider {
+            position: relative;
+            z-index: 1;
+
+            margin: 55px 0 22px;
+
+            border: 0;
+            border-top: 1px solid var(--border-color);
+            opacity: 1;
+        }
+
+        /* Footer Bottom */
+
+        .footer-bottom {
+            position: relative;
+            z-index: 1;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .footer-bottom p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 0.77rem;
+        }
+
+        .footer-bottom-brand {
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        /* Footer Responsive */
+
+        @media (max-width: 767px) {
+
+            .site-footer {
+                padding: 55px 0 22px;
+            }
+
+            .footer-column {
+                margin-bottom: 15px;
+            }
+
+            .footer-divider {
+                margin: 30px 0 20px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 991px) {
+
+            .navbar-collapse {
+                padding-top: 15px;
+            }
+
+            .navbar-nav {
+                gap: 2px;
+            }
+
+            .navbar .nav-link {
+                padding: 12px 15px !important;
+            }
+
+            .navbar-actions {
+                padding-top: 15px;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 576px) {
+
+            .navbar-brand {
+                font-size: 1.25rem;
+            }
+
+            .brand-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 1.15rem;
+            }
+
+            .whatsapp-float {
+                width: 54px;
+                height: 54px;
+                bottom: 18px;
+                right: 18px;
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+    <!-- =========================================
+         NAVIGATION
+    ========================================= -->
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+
+
+            <!-- OFFICIAL YENYANG LOGO -->
+
+            <a class="navbar-brand yenyang-navbar-brand" href="#home"
+                aria-label="Yenyang Transportation Services - Home">
+
+                <span class="navbar-logo-frame">
+
+                    <img src="{% static 'img/logo/logo.png' %}" alt="Yenyang Transportation Services"
+                        class="navbar-logo-image">
+
+                </span>
+
+            </a>
+
+
+            <!-- Mobile Toggle -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+                aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation"
+                style="border-color: var(--border-color);">
+                <i class="bi bi-list fs-2" style="color: var(--text-primary);"></i>
+            </button>
+
+            <!-- Navigation Links -->
+            <div class="collapse navbar-collapse" id="mainNavbar">
+
+                <ul class="navbar-nav mx-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#fleet">Our Fleet</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#destinations">Destinations</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#tours">Tour Packages</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About Us</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+
+                </ul>
+
+                <!-- Navbar Actions -->
+                <div class="navbar-actions">
+
+                    <!-- Theme Toggle -->
+                    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark mode"
+                        title="Toggle light/dark mode">
+                        <i class="bi bi-moon-stars-fill" id="themeIcon"></i>
+                    </button>
+
+                    <!-- Inquiry Button -->
+                    <a href="https://wa.me/639XXXXXXXXX?text=Hi%20Yenyang!%20I%20would%20like%20to%20inquire%20about%20your%20Cebu%20transportation%20and%20tour%20services."
+                        target="_blank" rel="noopener noreferrer" class="btn-primary-custom">
+                        <i class="bi bi-whatsapp"></i>
+                        Inquire Now
+                    </a>
+
+                </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================= -->
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- =========================================
+         FOOTER
+    ========================================= -->
+
+
+    <!-- =========================================
+     PREMIUM YENYANG FOOTER
+========================================= -->
+
+    <footer class="site-footer" id="contact">
+
+        <div class="container">
+
+            <div class="footer-content">
+
+                <div class="row g-5">
+
+                    <!-- =================================
+                     COLUMN 1: BRAND
+                ================================== -->
+
+                    <div class="col-lg-4 col-md-6 footer-column">
+
+                        <a href="#home" class="footer-brand">
+
+                            <span class="brand-icon">
+                                <i class="bi bi-compass-fill"></i>
+                            </span>
+
+                            <span>
+                                YENYANG<span class="brand-highlight">.</span>
+                            </span>
+
+                        </a>
+
+
+                        <p class="footer-description">
+
+                            Discover the beauty of Cebu with Yenyang
+                            Transportation Services & Island Adventures.
+
+                            From comfortable rides to unforgettable
+                            island experiences, we're here to help
+                            you explore more.
+
+                        </p>
+
+
+                        <p class="footer-tagline">
+
+                            EXPLORE CEBU.
+                            RIDE IN COMFORT.
+                            ADVENTURE WITHOUT LIMITS.
+
+                        </p>
+
+                    </div>
+
+
+                    <!-- =================================
+                     COLUMN 2: QUICK LINKS
+                ================================== -->
+
+                    <div class="col-lg-2 col-md-6 footer-column">
+
+                        <h5 class="footer-heading">
+                            Quick Links
+                        </h5>
+
+                        <ul class="footer-links">
+
+                            <li>
+                                <a href="#home">
+                                    <i class="bi bi-chevron-right"></i>
+                                    Home
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#fleet">
+                                    <i class="bi bi-chevron-right"></i>
+                                    Our Fleet
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#destinations">
+                                    <i class="bi bi-chevron-right"></i>
+                                    Destinations
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#tours">
+                                    <i class="bi bi-chevron-right"></i>
+                                    Tour Packages
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#about">
+                                    <i class="bi bi-chevron-right"></i>
+                                    About Us
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#reviews">
+                                    <i class="bi bi-chevron-right"></i>
+                                    Customer Reviews
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+                    <!-- =================================
+                     COLUMN 3: SERVICES
+                ================================== -->
+
+                    <div class="col-lg-3 col-md-6 footer-column">
+
+                        <h5 class="footer-heading">
+                            Our Services
+                        </h5>
+
+                        <ul class="footer-links">
+
+                            <li>
+                                <a href="#fleet">
+                                    <i class="bi bi-car-front"></i>
+                                    Vehicle Rentals
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#tours">
+                                    <i class="bi bi-water"></i>
+                                    Cebu Island Tours
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#destinations">
+                                    <i class="bi bi-compass"></i>
+                                    Destination Trips
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="https://wa.me/639XXXXXXXXX?text=Hi%20Yenyang!%20I%20would%20like%20to%20inquire%20about%20airport%20transfers."
+                                    target="_blank" rel="noopener noreferrer">
+
+                                    <i class="bi bi-airplane"></i>
+                                    Airport Transfers
+
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="https://wa.me/639XXXXXXXXX?text=Hi%20Yenyang!%20I%20would%20like%20to%20inquire%20about%20private%20transportation."
+                                    target="_blank" rel="noopener noreferrer">
+
+                                    <i class="bi bi-car-front-fill"></i>
+                                    Private Transportation
+
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="#booking">
+                                    <i class="bi bi-calendar-check"></i>
+                                    Plan Your Journey
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+
+                    <!-- =================================
+                     COLUMN 4: CONTACT
+                ================================== -->
+
+                    <div class="col-lg-3 col-md-6 footer-column">
+
+                        <h5 class="footer-heading">
+                            Get in Touch
+                        </h5>
+
+
+                        <div class="footer-contact-card">
+
+                            <div class="footer-contact-icon">
+                                <i class="bi bi-whatsapp"></i>
+                            </div>
+
+
+                            <h5>
+                                Let's Talk About Your Trip!
+                            </h5>
+
+
+                            <p>
+                                Have questions about vehicle rentals,
+                                tour packages, or customized Cebu
+                                itineraries? Send us an inquiry directly.
+                            </p>
+
+
+                            <a href="https://wa.me/639XXXXXXXXX?text=Hi%20Yenyang!%20I%20would%20like%20to%20inquire%20about%20your%20transportation%20and%20tour%20services."
+                                target="_blank" rel="noopener noreferrer" class="footer-whatsapp-btn">
+
+                                <i class="bi bi-whatsapp"></i>
+
+                                Message Yenyang
+
+                                <i class="bi bi-arrow-up-right"></i>
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+             FOOTER DIVIDER
+        ================================== -->
+
+            <hr class="footer-divider">
+
+
+            <!-- =================================
+             FOOTER BOTTOM
+        ================================== -->
+
+            <div class="footer-bottom">
+
+                <p>
+                    © {% now "Y" %}
+                    <span class="footer-bottom-brand">Yenyang.</span>
+                    All rights reserved.
+                </p>
+
+
+                <p>
+                    Transportation Services & Island Adventures
+                    | Cebu, Philippines
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================================
+         FLOATING WHATSAPP BUTTON
+    ========================================= -->
+
+    <a href="https://wa.me/639XXXXXXXXX?text=Hi%20Yenyang!%20I%20would%20like%20to%20inquire%20about%20your%20services."
+        class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact Yenyang through WhatsApp">
+        <span class="whatsapp-tooltip">
+            Let's plan your Cebu adventure!
+        </span>
+
+        <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <!-- =========================================
+         BOOTSTRAP JAVASCRIPT
+    ========================================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- =========================================
+         THEME TOGGLE JAVASCRIPT
+    ========================================= -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const htmlElement = document.documentElement;
+            const themeToggle = document.getElementById("themeToggle");
+            const themeIcon = document.getElementById("themeIcon");
+
+            // Load saved theme
+            let savedTheme = localStorage.getItem("yenyang-theme");
+
+            if (!savedTheme) {
+                savedTheme = "light";
+            }
+
+            // Apply theme
+            function applyTheme(theme) {
+
+                htmlElement.setAttribute("data-theme", theme);
+
+                if (theme === "dark") {
+
+                    themeIcon.className = "bi bi-sun-fill";
+                    themeToggle.setAttribute("aria-label", "Switch to light mode");
+
+                } else {
+
+                    themeIcon.className = "bi bi-moon-stars-fill";
+                    themeToggle.setAttribute("aria-label", "Switch to dark mode");
+
+                }
+
+                localStorage.setItem("yenyang-theme", theme);
+            }
+
+            // Initialize theme
+            applyTheme(savedTheme);
+
+            // Toggle theme
+            themeToggle.addEventListener("click", function () {
+
+                const currentTheme = htmlElement.getAttribute("data-theme");
+
+                const newTheme = currentTheme === "light"
+                    ? "dark"
+                    : "light";
+
+                applyTheme(newTheme);
+
+            });
+
+            // Close mobile navbar after clicking a navigation link
+            const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+
+            navLinks.forEach(function (link) {
+
+                link.addEventListener("click", function () {
+
+                    const navbarCollapse = document.getElementById("mainNavbar");
+
+                    if (navbarCollapse.classList.contains("show")) {
+
+                        const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+
+                        if (bsCollapse) {
+                            bsCollapse.hide();
+                        }
+
+                    }
+
+                });
+
+            });
+
+        });
+    </script>
+
+    {% block extra_js %}{% endblock %}
+
+</body>
+
+</html>
