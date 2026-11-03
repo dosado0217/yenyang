@@ -1,0 +1,12 @@
+
+[project]
+name = "yenyang"
+version = "0.1.0"
+description = "Yenyang Transportation Services and Island Adventures"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "Django==5.0.9",
+]
+
+[tool.vercel]
+entrypoint = "yenyang.wsgi:application"
