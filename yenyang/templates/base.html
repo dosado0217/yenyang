@@ -29,14 +29,23 @@
     <!-- Global CSS -->
     <style>
         /* =========================================
-           YENYANG DESIGN SYSTEM
-        ========================================= */
+   YENYANG OFFICIAL BRAND DESIGN SYSTEM
+   RED + BLACK + WHITE
+========================================= */
 
         :root {
-            --primary: #00BFA6;
-            --primary-dark: #009E8A;
-            --secondary: #008CCB;
-            --cyan-glow: rgba(0, 191, 166, 0.25);
+            --primary: #E31E24;
+            --primary-dark: #B5121B;
+            --secondary: #151515;
+
+            --brand-red: #E31E24;
+            --brand-black: #151515;
+            --brand-white: #FFFFFF;
+
+            --red-glow: rgba(227, 30, 36, 0.18);
+
+            /* Retained for existing CSS compatibility */
+            --cyan-glow: rgba(227, 30, 36, 0.18);
 
             --font-heading: 'Outfit', sans-serif;
             --font-body: 'DM Sans', sans-serif;
@@ -44,34 +53,46 @@
             --transition: all 0.3s ease;
         }
 
-        /* LIGHT MODE */
+
+        /* =========================================
+   LIGHT MODE
+========================================= */
+
         html[data-theme="light"] {
-            --bg-primary: #F5FBFD;
-            --bg-secondary: #EAF7FA;
-            --bg-card: rgba(255, 255, 255, 0.72);
 
-            --text-primary: #102A43;
-            --text-secondary: #52677A;
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F5F5F5;
+            --bg-card: rgba(255, 255, 255, 0.88);
 
-            --border-color: rgba(0, 140, 203, 0.12);
-            --navbar-bg: rgba(255, 255, 255, 0.78);
+            --text-primary: #151515;
+            --text-secondary: #626262;
 
-            --shadow: 0 8px 32px rgba(15, 70, 100, 0.08);
+            --border-color: rgba(0, 0, 0, 0.09);
+
+            --navbar-bg: rgba(255, 255, 255, 0.90);
+
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.07);
         }
 
-        /* DARK MODE */
+
+        /* =========================================
+        DARK MODE
+        ========================================= */
+
         html[data-theme="dark"] {
-            --bg-primary: #071824;
-            --bg-secondary: #0B2433;
-            --bg-card: rgba(17, 39, 54, 0.72);
 
-            --text-primary: #F0FAFF;
-            --text-secondary: #A7C0D0;
+            --bg-primary: #101010;
+            --bg-secondary: #191919;
+            --bg-card: rgba(37, 37, 37, 0.88);
 
-            --border-color: rgba(0, 191, 166, 0.15);
-            --navbar-bg: rgba(7, 24, 36, 0.82);
+            --text-primary: #FFFFFF;
+            --text-secondary: #C2C2C2;
 
-            --shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+            --border-color: rgba(255, 255, 255, 0.12);
+
+            --navbar-bg: rgba(12, 12, 12, 0.92);
+
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
         }
 
         /* =========================================
@@ -446,8 +467,128 @@
 
 
         /* =========================================
-   PREMIUM YENYANG FOOTER
-========================================= */
+        YENYANG FLOATING CONTACT WIDGET
+        ========================================= */
+
+        .contact-widget {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            z-index: 1100;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .contact-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 13px;
+
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px);
+            pointer-events: none;
+
+            transition: all 0.25s ease;
+        }
+
+        .contact-widget.is-open .contact-options {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .contact-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            min-width: 205px;
+            padding: 13px 17px;
+
+            border-radius: 14px;
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: 0.85rem;
+
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.20);
+            transition: all 0.25s ease;
+        }
+
+        .contact-option:hover {
+            color: #FFFFFF;
+            transform: translateX(-5px);
+        }
+
+        .contact-option i {
+            font-size: 1.35rem;
+        }
+
+        .contact-option.messenger {
+            background: #0866FF;
+        }
+
+        .contact-option.whatsapp {
+            background: #25D366;
+        }
+
+        .contact-option small {
+            display: block;
+            font-size: 0.68rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        .contact-toggle {
+            width: 62px;
+            height: 62px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border: 3px solid #FFFFFF;
+            border-radius: 50%;
+
+            background: #E31E24;
+            color: #FFFFFF;
+
+            font-size: 1.65rem;
+            cursor: pointer;
+
+            box-shadow: 0 6px 25px rgba(227, 30, 36, 0.35);
+
+            transition: all 0.3s ease;
+        }
+
+        .contact-toggle:hover {
+            background: #B5121B;
+            transform: scale(1.08);
+        }
+
+        .contact-widget.is-open .contact-toggle {
+            transform: rotate(45deg);
+        }
+
+        @media (max-width: 576px) {
+            .contact-widget {
+                right: 18px;
+                bottom: 18px;
+            }
+
+            .contact-toggle {
+                width: 55px;
+                height: 55px;
+            }
+        }
+
+
+        /* =========================================
+        PREMIUM YENYANG FOOTER
+        ========================================= */
 
         .site-footer {
             position: relative;
@@ -1108,18 +1249,58 @@
     </footer>
 
 
+
     <!-- =========================================
-         FLOATING WHATSAPP BUTTON
+        FLOATING CONTACT WIDGET
     ========================================= -->
 
-    <a href="https://wa.me/639XXXXXXXXX?text=Hi%20Yenyang!%20I%20would%20like%20to%20inquire%20about%20your%20services."
-        class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contact Yenyang through WhatsApp">
-        <span class="whatsapp-tooltip">
-            Let's plan your Cebu adventure!
-        </span>
+    <div class="contact-widget" id="contactWidget">
 
-        <i class="bi bi-whatsapp"></i>
-    </a>
+        <div class="contact-options" id="contactOptions" aria-hidden="true">
+
+            <!-- Messenger -->
+
+            <a href="https://m.me/61592285465647" class="contact-option messenger" target="_blank"
+                rel="noopener noreferrer">
+
+                <i class="bi bi-messenger"></i>
+
+                <span>
+                    Messenger
+                    <small>Chat with Yenyang</small>
+                </span>
+
+            </a>
+
+
+            <!-- WhatsApp -->
+
+            <a href="https://wa.me/639XXXXXXXXX?text=Hi%20Yenyang!%20I%20would%20like%20to%20inquire%20about%20your%20services."
+                class="contact-option whatsapp" target="_blank" rel="noopener noreferrer">
+
+                <i class="bi bi-whatsapp"></i>
+
+                <span>
+                    WhatsApp
+                    <small>Send us an inquiry</small>
+                </span>
+
+            </a>
+
+        </div>
+
+
+        <!-- Main Contact Button -->
+
+        <button type="button" class="contact-toggle" id="contactToggle" aria-label="Open contact options"
+            aria-expanded="false" aria-controls="contactOptions">
+
+            <i class="bi bi-chat-dots-fill"></i>
+
+        </button>
+
+    </div>
+
 
     <!-- =========================================
          BOOTSTRAP JAVASCRIPT
@@ -1203,6 +1384,70 @@
                 });
 
             });
+
+
+            /* =========================================
+               FLOATING CONTACT MENU
+            ========================================= */
+
+            const contactWidget = document.getElementById("contactWidget");
+            const contactToggle = document.getElementById("contactToggle");
+            const contactOptions = document.getElementById("contactOptions");
+
+            contactToggle.addEventListener("click", function () {
+
+                const isOpen = contactWidget.classList.toggle("is-open");
+
+                contactToggle.setAttribute("aria-expanded", isOpen);
+
+                contactOptions.setAttribute(
+                    "aria-hidden",
+                    !isOpen
+                );
+
+                contactToggle.setAttribute(
+                    "aria-label",
+                    isOpen ? "Close contact options" : "Open contact options"
+                );
+
+            });
+
+
+            // Close menu when clicking outside
+
+            document.addEventListener("click", function (event) {
+
+                if (!contactWidget.contains(event.target)) {
+
+                    contactWidget.classList.remove("is-open");
+
+                    contactToggle.setAttribute("aria-expanded", "false");
+
+                    contactToggle.setAttribute("aria-label", "Open contact options");
+
+                    contactOptions.setAttribute("aria-hidden", "true");
+
+                }
+
+            });
+
+
+            // Close using Escape
+
+            document.addEventListener("keydown", function (event) {
+
+                if (event.key === "Escape") {
+
+                    contactWidget.classList.remove("is-open");
+
+                    contactToggle.setAttribute("aria-expanded", "false");
+
+                    contactOptions.setAttribute("aria-hidden", "true");
+
+                }
+
+            });
+
 
         });
     </script>
